@@ -1,0 +1,58 @@
+@import "compass/reset";
+
+@include global-reset();
+
+$base-font-size: 16px;
+
+/* Tag Declarations */
+
+* {
+  // Make padding, margins, border fit inside specified width and heights
+  @include box-sizing(border-box);
+}
+
+html,
+button,
+input,
+select,
+textarea {
+  @include fontSize(16px);
+
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: normal;
+}
+
+h1 {
+  @include fontSize(48px);
+
+  color: $color-heading;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+p {
+  @include fontSize(14px);
+
+  color: $color-paragraph;
+}
+
+a {
+  text-decoration: none;
+}
+
+section {
+  margin-bottom: 40px;
+  @extend .clearfix;
+}
+
+/* Clearing Declarations */
+
+.clearfix {
+  @include pie-clearfix();
+}
+
+/* Element Declarations */
+
+%boundry {
+  border-bottom: 1px solid $color-boundry;
+}

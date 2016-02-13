@@ -1,0 +1,35 @@
+<div data-ng-controller="description">
+    <header class="l-header l-section">
+        <h1>Describe Your Item</h1>
+
+        <p>A great description will help your item stand out against the crowd</p>
+    </header>
+    <section class="form-default-layout l-section">
+        <label for="description-title">Title</label>
+        <input type="text" id="description-title" placeholder="Title" data-ng-model="item.title"/>
+
+        <div class="m-sell-description-condition">
+            <label for="description-condition">Condition</label>
+            <select data-ng-model="item.condition" id="description-condition"
+                    ng-options="condition for condition in conditions"></select><br>
+        </div>
+        <div class="m-sell-description-location">
+            <!--  <input type="text" data-maps-places="location" data-maps-restrict="country" /> -->
+            <label for="description-item-location">Item Location</label>
+            <input id="description-item-location" type="text"
+                   data-maps-places="{locationInfo: 'cityState', 'item.location': 'point'}"
+                   data-maps-restrict="country"/>
+        </div>
+
+        <label for="description-description">Description</label>
+        <textarea id="description-description" data-ng-model="item.description" data-ck-editor=""></textarea>
+    </section>
+
+    <section class="l-section">
+        <button class="btn btn-primary btn-next"
+          data-ng-disabled="!activeStep.isValid()"
+          data-ng-click="onNextStep()">
+          Next step <span class="btn-subtext">(Select Category)</span>
+        </button>
+    </section>
+</div>

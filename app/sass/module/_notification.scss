@@ -1,0 +1,23 @@
+%notification {
+  position: fixed;
+  min-height: 30px;
+  padding: 5px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 10000;
+}
+  
+.m-loading{
+  @extend %notification;
+  color: $color-notification-font;
+  background: $color-loading-background;
+}
+
+.m-error {
+  @extend %notification;
+  color: $color-notification-font;
+  background: $color-error-background;
+}
+  

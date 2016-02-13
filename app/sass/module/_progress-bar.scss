@@ -1,0 +1,49 @@
+
+.m-progress-bar{
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 0;
+
+  .message{
+    @include fontSize(14px);
+
+    margin-bottom: 4px;
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+
+  .status-message{
+
+  }
+
+  .error-message{
+    color: $color-error;
+  }
+}
+
+.m-progress-bar-indicator-container{
+  $height: 20px;
+
+  border: 1px solid $color-progress-bar-foreground;
+  display: block;
+  height: $height;
+  background: $color-progress-bar-background;
+
+  .m-progress-bar-percent{
+    @include fontSize(15px);
+
+    position: absolute;
+    width: 100%;
+    line-height: $height;
+  }
+
+  .m-progress-bar-indicator{
+    height: $height;
+    display: block;
+    width: 0;
+    text-align: center;
+    background: $color-progress-bar-foreground;
+  }
+
+}

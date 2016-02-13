@@ -1,0 +1,57 @@
+.m-wizard-nav {
+
+  li{
+    position: relative;
+    text-transform: capitalize;
+
+    &.active {
+
+      /* border-color: $color-active-background; */
+
+      // &+li{
+      //   border-top: 1px solid $color-active-background;
+      // }
+
+      a {
+        background: $color-active-background;
+        color: $color-active-font;
+        line-height: 56px;
+      }
+
+      &:after{
+        @include arrow-point(right, 12px, 10px, $color-active-background);
+      }
+
+    }
+
+    a {
+      display: block;
+      padding-left: 10px;
+      line-height: 45px;
+      font-weight: bold;
+      color: $color-wizard-nav;
+      &:hover {
+        background: $color-active-background;
+        color: $color-active-font;
+      }
+    }
+  }
+}
+
+.m-wizard-nav-number{
+  @include inline-block();
+  @include border-radius(12px);
+  height: 24px;
+  width: 24px;
+  background: $color-wizard-nav;
+  color: $color-active-font;
+  margin-right: 10px;
+  text-align: center;
+  line-height: 24px;
+
+  .active &, a:hover &{
+    background: $color-active-font;
+    color: $color-active-background ;
+  }
+
+}

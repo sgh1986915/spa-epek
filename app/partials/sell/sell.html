@@ -1,0 +1,45 @@
+<div data-ng-controller="sell" class="m-sell">
+    <ul id="l-secondary-content" class="l-list-border m-wizard-nav m-sell-wizard">
+        <li data-ng-repeat="step in steps"
+            data-ng-class="{active: isActiveStep(step.code), inactive: !isActiveStep(step.code)}">
+            <a data-ng-click="onStep(step)"><span class="m-wizard-nav-number">{{$index + 1}}</span>{{step.name}}</a>
+        </li>
+    </ul>
+
+  <div id="l-main-content" data-ng-switch data-on="activeStep">
+    <div resource-loading-notification=""></div>
+        <div data-ng-switch-when="video">
+            <div data-ng-include="'/partials/sell/video.html'"></div>
+        </div>
+
+        <div data-ng-switch-when="image">
+            <div data-ng-include="'/partials/sell/image.html'"></div>
+        </div>
+
+        <div data-ng-switch-when="description">
+          <div data-ng-include="'/partials/sell/description.html'"></div>
+        </div>
+
+        <div data-ng-switch-when="category">
+            <div data-ng-include="'/partials/sell/category.html'"></div>
+        </div>
+
+        <div data-ng-switch-when="listingType">
+            <div data-ng-include="'/partials/sell/listingType.html'"></div>
+        </div>
+
+        <div data-ng-switch-when="specifications">
+            <div data-ng-include="'/partials/sell/specifications.html'"></div>
+        </div>
+
+        <div data-ng-switch-when="payment">
+            <div data-ng-include="'/partials/sell/payment.html'"></div>
+        </div>
+    </div>
+
+    <div class="debug">
+        <p>stepsStates: {{sellData.stepsStates}}</p>
+        <p>Item: {{sellData.item | json}}</p>
+    </div>
+
+</div>

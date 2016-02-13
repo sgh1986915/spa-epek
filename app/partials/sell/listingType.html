@@ -1,0 +1,112 @@
+<div data-ng-controller="listingType" ng-init="loadData()">
+  <header class="l-header l-section">
+    <h1>Select Listing Type</h1>
+    <p>Select how you'd like to sell your item. On auction or at fixed price?</p>
+  </header>
+
+  <section class="l-section">
+    <input type="radio" group="listingType" value="auction" id="radio-2-1" data-ng-model="sellData.listingType.type" name="radio-2-set" class="m-regular-radio m-big-radio" /><label for="radio-2-1">Auction</label>
+    <input type="radio" group="listingType" value="fixed" data-ng-model="sellData.listingType.type" id="radio-2-2" name="radio-2-set" class="m-regular-radio m-big-radio" /><label for="radio-2-2">Fixed Price</label>
+    <div data-ng-switch="sellData.listingType.type">
+      <div data-ng-switch-when="auction">
+        <div class="m-sell-fields">
+          <h1 class="title">Set up auction</h1>
+          <input type="text" placeholder="Starting price" data-ng-model="item.price.startPrice"/>
+          <input type="number" placeholder="Days to list" data-ng-model="item.duration"/>
+        </div>
+      </div>
+
+      <div data-ng-switch-when="fixed">
+        <div id="variations" class="m-sell-fields">
+          <h1 class="title">Set up variations</h1>
+          <div id="known-variations" class="clearfix" data-ng-repeat="variation in item.variations">
+            <div>
+              <input type="text" placeholder="price" data-ng-model="variation.fixedPrice"/>
+              <input type="number" placeholder="quantity" data-ng-model="variation.quantity"/>
+              <input type="text" placeholder="SKU" data-ng-show="!singleVariation()" data-ng-model="variation.sku"/>
+            </div>
+            <div data-ng-repeat="key in attributeKeys">
+              <a class="btn-remove-attribute" data-ng-show="$parent.$index == 0" data-ng-click="deleteVariationAttribute(key)"><i class="icon-cancel"></i>{{ key }}</a>
+              <input type="text" placeholder="{{key}}" data-ng-model="variation[key]" data-is-focused="focused[variation + key]">
+              <div class="hint">
+                <ul ng-show="focused[variation + key]">
+                    <li data-ng-repeat="option in data.options[key] | filter:variation[key]" ng-click="variation[key] = option.value;">
+                      <a href="" class="btn-add-attribute small">
+                        <i class="icon-plus"></i>
+                        {{option.value}}
+                      </a>
+                    </li>
+                </ul>
+              </div>
+            </div>
+
+            <div data-ng-show="!singleVariation() && $index == 0">
+              <input type="text" placeholder="new attribute" data-ng-model="newAttribute.name" data-is-focused="focused['newAttribute.name']">
+              <div class="hint">
+                <ul ng-show="focused['newAttribute.name']">
+                  <li data-ng-repeat="attribute in data.attributes | minus:attributeKeys | filter:newAttribute.name" ng-click="newAttribute.name = attribute; newAttribute.value = ''">
+                    <a href="" class="btn-add-attribute small">
+                      <i class="icon-plus"></i>
+                      {{attribute}}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <input type="text" placeholder="{{newAttribute.name}} value" data-ng-model="newAttribute.value" data-is-focused="focused['newAttribute.value']">
+              <div class="hint">
+                <ul ng-show="focused['newAttribute.value']">
+                  <li data-ng-repeat="option in data.options[newAttribute.name] | filter:newAttribute.value" ng-click="newAttribute.value = option.value;">
+                    <a href="" class="btn-add-attribute small">
+                      <i class="icon-plus"></i>
+                      {{option.value}}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <a class="btn-add-attribute" data-ng-click="addVariationAttribute(newAttribute)"><i class="icon-plus"></i>Add Attribute</a>
+            </div>
+
+            <div data-ng-show="!singleVariation() && !emptyMedia()">
+              <a class="btn-add-attribute" data-ng-click="toggleShowAddVisuals()"><i class="icon-plus"></i>Assign images &amp; Videos</a>
+              <div data-ng-show="showAddVisuals">
+                <div class="fields-wrap">
+                  <div data-ng-hide="noVideo()">
+                    <h4>Select Videos for this Variation</h4>
+                    <ul class="media-items-list">
+                      <li class="media-item" data-ng-repeat="video in sellData.videos" data-ng-click="toggleVideo($parent.$index, video.id)">
+                        <img data-ng-src="http://img.youtube.com/vi/{{video.id}}/mqdefault.jpg" class="{{isVideoSelected($parent.$index, video.id) && 'is-selected' || 'is-unselected'}}" width="256">
+                      </li>
+                    </ul>
+                  </div>
+                  <div data-ng-hide="noImages()">
+                    <h4>Select Images for this Variation</h4>
+                    <ul class="media-items-list">
+                      <li class="media-item" data-ng-repeat="image in sellData.images" data-ng-click="toggleImage($parent.$index, image.url)">
+                        <img data-ng-src="{{image.url}}=s256" class="{{isImageSelected($parent.$index, image.url) && 'is-selected' || 'is-unselected'}}">
+                      </li>
+                    </ul>
+                  </div>
+                  <a class="btn-remove-attribute" href="" data-ng-click="toggleShowAddVisuals()"><i class="icon-cancel"></i>Close</a>
+                </div>
+              </div>
+            </div>
+
+            <div data-ng-show="item.variations.length > 2">
+              <a class="btn-remove-attribute" data-ng-click="removeVariation($index)" data-ng-disabled="singleVariant()"><i class="icon-cancel"></i>Remove this variation</a>
+            </div>
+          </div>
+          <div data-ng-show="!singleVariation()">
+            <a class="btn-remove-attribute big" data-ng-click="removeAllVariations()"><i class="icon-cancel"></i>Remove all the variations</a>
+          </div>
+          <a class="btn-add-attribute big" data-ng-click="addVariation()"><i class="icon-plus"></i>Add variation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="l-section">
+      <button class="btn btn-primary btn-next"
+        data-ng-disabled="!activeStep.isValid()"
+        data-ng-click="onNextStep()">Next step
+      </button>
+  </section>
+</div>

@@ -1,0 +1,82 @@
+<div data-ng-controller="category" ng-init="init()" xmlns="http://www.w3.org/1999/html">
+    <style>
+        .steps-container {
+            width: 800px;
+        }
+
+        .previous-step {
+            float: left;
+            width: 0;
+            opacity: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: 200px;
+        }
+
+        .current-step {
+            float: left;
+            width: 400px;
+            height: 200px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .previous-step.active {
+            width: 400px;
+            opacity: 1;
+        }
+
+
+    </style>
+
+    <header class="l-header l-section">
+        <h1>Categorize Your Item</h1>
+
+        <p>Placing your item in the right category can make or break an auction</p>
+    </header>
+
+    <section>
+        <div data-ng-show="data.stepStatus!='success'">
+            <span class="error">{{sellData.category.stepStatus.message}}</span>
+        </div>
+
+        <ul class="l-section m-breadcrumbs">
+            <li data-ng-repeat="breadcrumb in itemCategory">
+                <a data-ng-hide="$last" ng-href="#" data-ng-click="loadCategory($event, $index, breadcrumb)">{{breadcrumb}}</a>
+                <span data-ng-show="$last">{{breadcrumb}}</span>
+            </li>
+        </ul>
+
+
+        <section class="m-step-select clearfix">
+
+            <!-- prev step -->
+            <ul class="l-list-border m-step-select-items m-step-select-previous"
+                ng-class="{active: sellData.category.activeCategoryParent}">
+                <li data-ng-repeat="childCategory in data.categoriesData[data.activeCategoryParent].categoryInfo.children"
+                    ng-class="{activeCategory: itemCategory[data.currentIndex] == childCategory.categoryName}">
+                    <a href="#"
+                       data-ng-click="loadCategory($event, data.currentIndex, childCategory.categoryName, $index, $last)">{{childCategory.categoryName}}<span class="m-step-select-connector" data-ng-style="{top: data.connectorTop+'px', height: data.connectorHeight+'px'}"></span></a>
+                </li>
+            </ul>
+
+            <!-- current step -->
+            <ul class="l-list-border m-step-select-items m-step-select-active">
+                <li data-ng-repeat="childCategory in data.categoriesData[data.activeCategory].categoryInfo.children"
+                    ng-class="{activeCategory: itemCategory[data.nextIndex] == childCategory.categoryName}">
+                    <a href="#"
+                       data-ng-click="loadCategory($event, data.nextIndex, childCategory.categoryName, $index, $last)">{{childCategory.categoryName}}</a>
+                    <span class="m-step-select-arrow"></span>
+                </li>
+            </ul>
+
+        </section>
+
+        <button class="btn btn-primary btn-next"
+                data-ng-disabled="!activeStep.isValid()"
+                data-ng-click="onNextStep()">
+            Next step
+        </button>
+
+    </section>
+</div>

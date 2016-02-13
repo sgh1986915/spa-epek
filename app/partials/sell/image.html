@@ -1,0 +1,65 @@
+<style>
+
+
+    #sellImage_container canvas {
+        display: none;
+    }
+
+
+</style>
+<div id="sellImage_container" class="dragcontainer" data-ng-controller="image">
+    <header class="l-header l-section">
+        <h1>Add a Picture or Two</h1>
+
+        <p>Bring life to your auction by uploading up to 10 pictures</p>
+    </header>
+
+    <section class="l-section">
+        <canvas id="sellImage_canvas" width="0" height="0">
+            Sorry, your browser doesn't support the &lt;canvas&gt; element.
+        </canvas>
+
+        <ul class="l-section m-thumbnails">
+            <li ng-repeat="image in sellData.images" class="m-thumbnails-image {{image.status}}"
+                data-ng-hide="image.status == 'removed'">
+
+                <a href="#remove" class="remove-trigger">
+                    <div data-ng-click="removeImage($event, $index)" class="remove-overlay">
+                        <span class="icon-cancel-circled btn-remove"></span>
+                    </div>
+                    <img data-ng-src="{{image.urlData}}">
+                </a>
+
+                <div class="m-progress-bar" data-ng-hide="image.status == 'done'">
+                    <div class="message">
+                        <span class="status-message">{{image.status}}</span>
+                        <span class="error-message">{{image.errorMessage}}</span>
+                    </div>
+                    <div class="m-progress-bar-indicator-container">
+                        <div class="m-progress-bar-percent">{{image.percentage}}%</div>
+                        <div class="m-progress-bar-indicator" style="width: {{image.percentage}}%"></div>
+                    </div>
+                </div>
+
+            </li>
+        </ul>
+
+        <form>
+            <!-- JPEG, PNG, WEBP, GIF (including animated GIF), BMP, TIFF or ICO -->
+            <div class="btn btn-primary btn-file-selector btn-drop"
+                 dropzone="copy file:image/png file:image/gif file:image/jpeg file:image/jpg file:image/jpe file:image/ico file:image/icon file:text/ico file:application/ico file:image/x-icon file:image/tiff file:image/tif file:image/x-windows-bmp file:image/bmp">
+                <input class="btn-file-hidden" type="file" id="sellImage_fileInput" multiple>
+                <div class="btn btn-primary">Click to Add Image</div>
+                <div class="btn-subtext">or drop files here</div>
+            </div>
+        </form>
+    </section>
+
+    <section class="l-section">
+        <button class="btn btn-primary btn-next"
+          data-ng-disabled="!activeStep.isValid()"
+          data-ng-click="onNextStep()">
+          Next step <span class="btn-subtext">(Description)</span>
+        </button>
+    </section>
+</div>

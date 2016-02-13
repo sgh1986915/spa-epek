@@ -1,0 +1,41 @@
+<div data-ng-controller="specifications" data-ng-init="loadData()">
+    <h2>Setup specifications</h2>
+    <div data-ng-show="data.attributes">
+        {{data.standardAttributes}}
+        <ul>
+            <li data-ng-repeat="attribute in data.attributes">
+                <label>
+                    {{attribute[0].name}}:
+                    <input data-ng-model="data.standardAttributes[attribute[0].name]" data-is-focused="data.focus[attribute[0].name]">
+                    <ul data-ng-show="data.focus[attribute[0].name]">
+                        <li data-ng-repeat="option in attribute[1].value | filter:data.standardAttributes[attribute[0].name]"
+                                data-ng-click="setStandardAttributeValue(attribute[0].name, option.value)">{{option.value}}</li>
+                    </ul>
+                </label>
+            </li>
+        </ul>
+    </div>
+    <div>
+        {{data.customAttributes}}
+        <div data-ng-repeat="(key, value) in data.customAttributes">
+            <label>
+                {{key}}
+                <a data-ng-click="deleteCustomAttribute(key)">X</a>
+                <input type="text" placeholder="{{key}} value" data-ng-model="data.customAttributes[key]">
+            </label>
+        </div>
+        <div>
+            <input type="text" placeholder="new attribute" data-ng-model="newAttribute.name">
+            <input type="text" placeholder="{{newAttribute.name}} value" data-ng-model="newAttribute.value">
+        </div>
+        <button data-ng-click="setCustomAttributeValue()">Add Attribute</button>
+    </div>
+
+    <button class="btn btn-primary btn-next clearfix"
+            data-ng-disabled="!activeStep.isValid()"
+            data-ng-click="onNextStep()">
+        Next step
+    </button>
+
+    <span class="error" data-ng-show="data.stepStatus.status == 'failure'">{{data.stepStatus.message}}</span>
+</div>

@@ -1,0 +1,63 @@
+.m-sell-wizard {
+  margin-top: 50px;
+}
+
+.m-sell {
+  .btn-drop {
+    height: 200px;
+    padding: 50px 0;
+    border: 3px dashed $grey-light;
+    background-color: $grey-very-light;
+    border-radius: 20px;
+    color: $grey-medium;
+    @include border-radius(20);
+    @include span-columns(9, 9);
+  }
+}
+
+.m-sell-description-condition {
+  @include span-columns(3, 9);
+}
+
+.m-sell-description-location {
+  @include span-columns(6 omega, 9);
+
+}
+
+.m-sell-fields {
+  margin-top: 20px;
+  width: 100%;
+  @include float-left;
+  input {
+    margin: 0 10px 10px 0;
+    width: 100%;
+    @include float-left;
+  }
+  .fields-wrap {
+    width: 100%;
+    @include inline-block;
+    .media-items-list {
+      position: relative;
+      margin: 10px 0;
+      @include pie-clearfix;
+      .media-item {
+        margin: 5px;
+        @include float-left;
+      }
+    }
+    h4 {
+      padding: 10px 0;
+    }
+  }
+  .media-item img {
+    @include float-left;
+  }
+  .hint {
+    @include pie-clearfix;
+  }
+  .title {
+    padding: 5px 0;
+    color: $color-primary;
+  }
+}
+

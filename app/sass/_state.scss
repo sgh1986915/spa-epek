@@ -1,0 +1,9 @@
+.is-hidden {
+  display: none;
+}
+.is-disabled {
+  @include opacity(0.5);
+}
+.is-unselected {
+  @include opacity(0.3);
+}

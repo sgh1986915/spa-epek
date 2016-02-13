@@ -1,0 +1,21 @@
+// Variables
+
+$background-color1: #fafafa; // light gray
+
+$border1: solid 1px #ececec; // light gray
+
+$color1: #396c9c;  // dark blue
+$color2: #888;  // medium gray
+
+//
+
+
+
+
+
+// Media Query Mixins
+@mixin breakpoint1 	{ @media only screen and (min-width: 480px) { @content; } }
+@mixin breakpoint2 	{ @media only screen and (min-width: 640px) { @content; } }
+@mixin tablet 			{ @media only screen and (min-width: 768px) { @content; } }
+@mixin desktop 			{ @media only screen and (min-width: 1000px) { @content; } }
+//

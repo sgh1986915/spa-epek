@@ -1,0 +1,56 @@
+.m-header-filler {
+  border-bottom: 1px solid $color-stripe-border;
+  background: $color-stripe-background;
+
+  height: 145px;
+
+}
+
+.m-header {
+  @include span-columns(1, 12);
+  @extend .m-header-filler;
+  width: 100%;
+  padding-top: 25px;
+}
+
+.m-header-nav {
+  @include omega;
+  margin-bottom: 25px;
+
+  li {
+    @include inline-block();
+    @include fontSize(14px);
+
+    a {
+      color: $color-paragraph;
+      margin-left: 20px;
+      margin-right: 20px;
+      font-weight: 500;
+
+      &.m-header-nav-hightlight {
+        color: $color-header-nav-highlight;
+      }
+    }
+
+    &:not(:last-child):after {
+      content: "|";
+    }
+  }
+}
+
+.m-header-logo {
+  @include span-columns(3, 12);
+  @include epek-logo();
+  margin-top: 25px;
+}
+
+.m-header-search {
+  @include span-columns(9 omega, 12);
+
+  .search-field {
+    width: 90%;
+  }
+}
+
+
+

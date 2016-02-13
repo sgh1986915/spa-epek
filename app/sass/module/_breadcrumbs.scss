@@ -1,0 +1,23 @@
+.m-breadcrumbs {
+
+  color: $color-breadcrumb;
+
+  li {
+    display: inline-block;
+    margin-right: 10px;
+
+
+    &:not(:first-child):before{
+      content: ">>";
+      color: $color-breadcrumb-guillemet;
+    }
+
+    a{
+      color: $color-breadcrumb-link;
+
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+@mixin display-flex {
+  //@include experimental-value(display, flex, -moz, -webkit, not -o, -ms, not -khtml, official);
+  -ms-box-orient: horizontal;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flex-wrap {
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+@mixin arrow-point($direction, $top, $width, $color ){
+
+  $side: $width - 1;
+
+  content: "";
+  top: $top;
+  right: ($width) * -1;
+  position: absolute;
+  display: block;
+  border-bottom: $side solid transparent;
+  border-top: $side solid transparent;
+  border-left: $width solid $color;
+}
+
+@mixin epek-logo($height: 58px, $width: 130px){
+  background: url(../images/epek-logo.png);
+  background: url(../images/epek-logo.svg) no-repeat top left;
+  background-size: contain;
+  height: $height;
+  width: $width;
+}
+
+@mixin fontSize($px-size){
+  font-size: $px-size; //Fallback in px
+  font-size: px-to-rem($px-size);
+}
+
+@function px-to-em($target, $base: $base-font-size) {
+  @if $target == 0 { @return 0 }
+  @return $target / $base + 0em;
+}
+
+@function px-to-rem($size, $base: $base-font-size) {
+  $remSize: $size / $base;
+  @return #{$remSize}rem;
+}
+
+

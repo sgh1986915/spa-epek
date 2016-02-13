@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app="epek"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" ng-app="epek"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" ng-app="epek"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Epek</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+
+<link href="css/style.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500,700,400italic' rel='stylesheet'>
+</head>
+<body>
+
+    <header class="m-header-filler">
+        <div class="container-header" data-ng-include="'/partials/header.html'"></div>
+    </header>
+    <div class="container-default">
+        <div data-ng-class="callStatus.status" data-ng-show="'callStatus.status !== \'success\''">
+            <p>{{callStatus.error.message}}</p>
+            <p>{{callStatus|json}}</p>
+        </div>
+        <div data-ng-switch='pendingServices.length'>
+            <div data-ng-view data-ng-switch-when='0'></div>
+        </div>
+    </div>
+    <script data-main="js/main.js" src="js/libs/requirejs/2.1.1/require.js"></script>
+
+</body>
+</html>

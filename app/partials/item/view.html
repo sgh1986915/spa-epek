@@ -1,0 +1,62 @@
+<div data-ng-controller="itemView" class="main-container">
+    <style type="text/css">
+        .disabled-share {
+            text-decoration: line-through;
+        }
+    </style>
+
+    <div data-ng-show="data.status!='success'">
+        <span class="error">{{data.message}}</span>
+    </div>
+
+    <h1>{{ info.title }} <a href="javascript:;" data-ng-click="showShareDialog()">Share</a></h1>
+
+    <div data-ng-show="shareDialogForAuthenticated">
+        <div>Message:</div>
+        <textarea ng-model="shareMessage"></textarea>
+        <a href="javascript:;" data-ng-click="shareOnTwitter()" ng-class="{'disabled-share': shareAuth.twitter == false}">Twitter</a>
+        <a href="javascript:;" data-ng-click="shareOnFacebook()" ng-class="{'disabled-share': shareAuth.facebook == false}">Facebook</a>
+        <a href="javascript:;" data-ng-click="removeAuthorization();">Revoke</a>
+    </div>
+    <div data-ng-show="shareDialogForUnauthenticated">
+        <a href="#/sso/register">Login or Register</a>
+    </div>
+
+
+    <div>Started on: {{ info.startTime }}</div>
+    <div>Ends on: {{ info.endTime }}</div>
+
+    <h2>Price</h2>
+
+    <div data-ng-show="info.price">
+        {{ info.price.startPrice }} {{ info.locale.currencySymbol }} <a href="#">Place bid</a>
+    </div>
+
+    <div data-ng-show="info.variations">
+        <div data-ng-repeat="variation in info.variations">
+            <div>{{ variation.quantity }} item(s) for <b>{{ variation.fixedPrice }} {{ info.locale.currencySymbol }}</b> <a href="#">Buy now</a> </div> 
+            <div>Color: {{ variation.color }}</div>
+            <div>Size: {{ variation.size }}</div>
+        </div>
+    </div>
+
+
+    <h2>Shipping & Handling</h2>
+
+    <div ng-repeat="shipping in info.shipping">
+        <div><h4>{{ shipping.shippingService }}</h4></div>
+        <div>Dispatch Time: {{ shipping.dispatchTimeMax }}</div>
+        <div>Cost: <b>{{ shipping.shippingCost }} {{ info.locale.currencySymbol }}</b></div>
+    </div>
+
+    <h2>Payment</h2>
+
+    <div>You can pay with:</div>
+    <ul>
+        <li ng-repeat="service in info.paymentService.online">{{ service }}</li>
+        <li ng-repeat="service in info.paymentService.offline">{{ service }}</li>
+    </ul>
+
+    <h2>Description</h2>
+    <div>{{ description }}</div>
+</div>

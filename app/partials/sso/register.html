@@ -1,0 +1,118 @@
+<!--HEADER-->
+<div data-ng-controller="auth" class="m-single-sign-on register-page-container">
+
+    <div class="stripe">
+
+        <div class="content-container">
+
+            <div resource-loading-notification=""></div>
+            <form novalidate data-ng-submit="discover(user.email)" name="discoverForm" class="discover-form"
+                  ng-class="{discovered: authStatus.formStatus.length}">
+                <div class="email-wrapper clearfix">
+                    <input name="email" type="email" placeholder="email" required="required" data-ng-model="user.email"
+                           class="email">
+                    <button name="Discover" class="btn-icon btn-primary icon-right-bold b-send arrow-button"
+                            type="submit"
+                            tabindex="1"></button>
+
+                    <div class="clearfix" data-ng-show="discoverForm.email.$viewValue && discoverForm.email.$invalid">
+                        <span class="error" data-ng-show="discoverForm.email.$error.required">Email is required.</span>
+                        <span class="error"
+                              data-ng-show="discoverForm.email.$error.email">This is not a valid email.</span>
+                    </div>
+                </div>
+            </form>
+
+            <div data-ng-switch="" data-on="authStatus.formStatus">
+
+                <div data-ng-switch-when="simpleAuth">
+                    <form novalidate name="simpleAuthForm" data-ng-submit="register(user)">
+                        <section>
+                            <a href="#" data-ng-click="reset($event)" class="already-have-account">Already have an
+                                account? Log in</a>
+
+                            <div class="field-wrapper">
+                                <input name="userid" id="userid-openid" type="text" placeholder="userid"
+                                       required="required"
+                                       data-ng-model="user.userId"
+                                       on-keyup="checkUsername(user.userId)"
+                                       data-ng-minlength="3"
+                                       data-ng-maxlength="15"
+                                       data-ng-class="{available: authStatus.useridStatus == 'success'}">
+                                <span class="error" data-ng-show="authStatus.useridStatus == 'failure'">This username is already taken.</span>
+                                <span class="error" data-ng-show="simpleAuthForm.userid.$error.required">Username is required!</span>
+                                <span class="error" data-ng-show="simpleAuthForm.userid.$error.minlength">Username length must be 3 to 15 characters.</span>
+                            </div>
+                            <div class="field-wrapper">
+                                <input name="password" id="password" required="required" type="password"
+                                       data-ng-model="user.password" placeholder="password">
+                        <span class="error"
+                              data-ng-show="simpleAuthForm.password.$error.required">Password is required.</span>
+                            </div>
+                            <div id="recaptcha" class="recaptcha field-wrapper" data-recaptcha=""></div>
+                        </section>
+                        <input type="submit" value="Sign Up!" class="btn btn-primary signup">
+                    </form>
+                </div>
+
+                <div data-ng-switch-when="openIdAuth">
+                    <form novalidate name="openIdAuthForm">
+
+                        <a href="#" data-ng-click="reset($event)">Already have an account? Log in</a>
+
+                        <input name="userid" id="userid-openid" type="text" placeholder="userid" required="required"
+                               data-ng-model="user.userId"
+                               on-keyup="checkUsername(user.userId)"
+                               data-ng-minlength="3"
+                               data-ng-maxlength="15"
+                               maxlength="15"
+                               data-ng-class="{available: authStatus.useridStatus == 'success'}">
+                        <button class="b_send icon-right-bold" type="submit" tabindex="1"></button>
+                        <span class="error" data-ng-show="authStatus.useridStatus == 'failure'">This username is already taken.</span>
+                        <span class="error"
+                              data-ng-show="openIdAuthForm.userid.$error.required">Username is required!</span>
+                        <span class="error" data-ng-show="openIdAuthForm.userid.$error.minlength">Username length must be 3 to 15 characters.</span>
+                    </form>
+                    <div data-ng-hide="useOpenId">
+                        <p>Would you like to use your OpenId account to sign up and login faster?</p>
+                        <button data-ng-click="useOpenId()">Yes</button>
+                        <button data-ng-click="skipOpenId()">No, skip it</button>
+                    </div>
+                </div>
+
+                <div data-ng-switch-when="simpleLogin" class="simple-login-form">
+                    <form name="simpleLoginForm" data-ng-submit="loginUser(user.email, user.password)">
+
+                        <input name="password" id="password" required="required" type="password"
+                               data-ng-model="user.password" placeholder="password"
+                               class="password has-field-info-associated">
+                        <button type="submit" value="Login"
+                                class="btn-icon btn-primary icon-right-bold login-arrow-button"></button>
+                        <span class="error" data-ng-show="simpleLoginForm.password.$error.required">Password is required.</span>
+                        <a href="/#/sso/forgotPassword" class="forgot-password">Forgot password?</a>
+                    </form>
+                </div>
+
+            </div>
+
+            <span class="label">
+				{{authStatus.status}}<br>
+				{{authStatus.message}}
+			</span>
+
+        </div>
+
+    </div>
+
+    <div class="register-footer content-container">
+        <div class="footer-text">
+            Epek does not use your information without your consent. The transmission of information is encrypted and
+            protected using Secure Sockets Layer (SSL).
+        </div>
+        <a href="http://clicktoverify.truste.com/pvr.php?page=validate&url=www.epek.com&lang=en"
+           class="footer-logo logo-truste"><img src="images/logo-truste.png"></a>
+        <a href="https://sealinfo.verisign.com/splash?form_file=fdf/splash.fdf&lang=en&dn=www.epek.com"
+           class="footer-logo logo-verisign"><img src="images/logo-verisign.png"></a>
+    </div>
+
+</div>

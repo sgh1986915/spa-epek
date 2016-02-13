@@ -1,0 +1,43 @@
+{
+  "name": "epek",
+  "version": "0.0.1",
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.x"
+  },
+  "dependencies": {
+    "st": "latest",
+    "http-proxy": "latest",
+    "proxy-by-url": "latest"
+  },
+  "devDependencies": {
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-requirejs": "~0.4.1",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-sass": "~0.4.1",
+    "grunt-contrib-compass": "~0.5.0",
+    "grunt-contrib-connect": "~0.2.0",
+    "grunt-contrib-livereload": "~0.1.2",
+    "grunt-string-replace": "~0.2.4",
+    "karma-script-launcher": "~0.1.0",
+    "karma-chrome-launcher": "~0.1.0",
+    "karma-firefox-launcher": "~0.1.0",
+    "karma-html2js-preprocessor": "~0.1.0",
+    "karma-jasmine": "~0.1.3",
+    "grunt-regarde": "~0.1.1",
+    "karma-requirejs": "~0.1.0",
+    "karma-coffee-preprocessor": "~0.1.0",
+    "karma-phantomjs-launcher": "~0.1.0",
+    "karma-junit-reporter": "~0.1.0",
+    "grunt-contrib-compress": "~0.5.2",
+    "karma-ng-html2js-preprocessor": "~0.1.0",
+    "karma-ng-scenario": "~0.1.0",
+    "grunt-karma": "~0.6.2",
+    "optimist": "~0.6.0",
+    "grunt-s3": "~0.2.0-alpha.2",
+    "matchdep": "~0.1.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "karma-coverage": "~0.1.0",
+    "grunt-contrib-jshint": "~0.6.4"
+  }
+}

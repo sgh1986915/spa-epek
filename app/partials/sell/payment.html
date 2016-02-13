@@ -1,0 +1,67 @@
+<div class="ePayment" data-ng-controller="payment" data-ng-init="loadData()">
+
+    <style scoped="scoped">
+        .ePayment {
+            width: 500px;
+            overflow: hidden;
+        }
+        .success {
+            color: green;
+        }
+        .error, .error input {
+            color: red;
+        }
+        .error input {
+            border: 1px solid red;
+        }
+        .pull-right {
+            float: right;
+        }
+    </style>
+
+    <header class="l-header l-section">
+        <h1>Payment methods</h1>
+        <p>Add multiple payment methods to make it easier to get paid</p>
+    </header>
+
+    <section class="ePaymentList">
+        <div data-ng-show="data.stepStatus!='success'">
+            <span class="error">{{data.stepStatus.message}}</span>
+        </div>
+
+        <article class="ePaymentMethod" data-ng-repeat="item in data.availableIds">
+
+            <!-- Pay on pick up -->
+            <div class="eMethodInfo" data-ng-show="item.paymentService == 'payOnPickup'">
+                <label>
+                    <input type="checkbox" data-ng-model="data.payOnPickup.isSelected">
+                    <strong>{{item.paymentName}}</strong>
+                </label>
+            </div>
+
+            <!-- PayPal -->
+            <div class="eMethodInfo" data-ng-show="item.paymentService == 'paypal'">
+                <span class="pull-right">
+                    <button data-ng-click="startEditingPaypal()" data-ng-show="showLinkPaypalAccountButton()">Link PayPal account</button>
+                    <button data-ng-click="startEditingPaypal()" data-ng-show="showEditPaypalAccountButton()">Edit</button>
+                    <button data-ng-click="stopEditingPaypal()" data-ng-show="showCancelEditPaypalAccountButton()">Cancel</button>
+                </span>
+                <label>
+                    <input type="checkbox" data-ng-disabled="!data.paymentIds.paypalOauth.email" data-ng-model="data.paypal.isSelected">
+                    <strong>{{item.paymentName}}</strong>
+                </label>
+                <div data-ng-hide="hidePaypalId()">
+                    Email: {{data.paymentIds.paypalOauth.email}}
+                </div>
+                <div data-ng-show="showPaypalEditScreen()">
+                    <span>You will be redirected on PayPal website to complete the set-up process</span>
+                    <button data-ng-click="paypalOauth()" data-ng-show="showConfirmPaypalAccountButton()">Confirm</button>
+                    <button data-ng-click="paypalOauthCancel()" data-ng-show="showCancelConfirmPaypalAccountButton()">Cancel</button>
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <div class="debug">{{sellData.item|json}}</div>
+    <button data-ng-show="data.stepStatus=='success'" data-ng-disabled="!(data.payOnPickup.isSelected || data.paypal.isSelected)" data-ng-click="validate() && listItem()">List Item</button>
+</div>

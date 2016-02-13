@@ -1,0 +1,58 @@
+
+.m-thumbnails{
+
+}
+
+.m-thumbnails-image{
+
+  $size: 150px;
+
+  @extend .l-standard-border;
+
+  float: left;
+
+  margin: 0 10px 10px 0;
+  width: $size;
+  height: $size;
+
+  img{
+    max-width: $size;
+    max-height: $size;
+  }
+
+  position: relative;
+
+  a.remove-trigger{
+    height: 100%;
+    width: 100%;
+    display: block;
+
+    .remove-overlay{
+      display: none;
+    }
+
+    &:hover .remove-overlay{
+      display: block;
+    }
+  }
+
+  .remove-overlay{
+
+    line-height: $size;
+    text-align: center;
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: $color-white-overlay;
+
+    .btn-remove{
+
+      height: 100%;
+      width: 100%;
+      color: $color-error;
+      @include fontSize(50px);
+    }
+
+  }
+}

@@ -1,0 +1,181 @@
+.m-single-sign-on {
+
+  .discovered .email-wrapper{
+    margin-bottom: 40px;
+  }
+
+  a {
+    color: $blue-light;
+  }
+
+  @mixin breakpoint1 {
+    @media only screen and (min-width: 480px) {
+      @content;
+    }
+  }
+  @mixin breakpoint2 {
+    @media only screen and (min-width: 640px) {
+      @content;
+    }
+  }
+  @mixin tablet {
+    @media only screen and (min-width: 768px) {
+      @content;
+    }
+  }
+  @mixin desktop {
+    @media only screen and (min-width: 1000px) {
+      @content;
+    }
+  }
+
+  .register-page-container {
+    @include tablet {
+      padding-bottom: 3em;
+    }
+  }
+
+  .stripe {
+    background: $color-stripe-background;
+    border-top: solid 1px $color-stripe-border;
+    border-bottom: solid 1px $color-stripe-border;
+    padding: 1.5em 0;
+    margin: 0;
+    .inputs-container {
+      padding-top: 10px;
+    }
+    @include tablet {
+      margin-top: 6em;
+    }
+    @include desktop {
+      margin-top: 10em;
+    }
+  }
+
+  .loading {
+    position: absolute;
+    margin-top: -4em;
+    padding-left: 11px;
+  }
+
+  .stripe  .content-container {
+    //margin: -10px auto;
+    padding-top: 50px;
+    background: url(../images/epek_logo_1.png) no-repeat;
+    //background-position: top center;
+  }
+
+  .content-container {
+    width: 280px;
+    // padding: 0 10px;
+    margin: auto;
+
+    @include breakpoint1 {
+      width: 440px;
+    }
+    @include breakpoint2 {
+      width: 510px;
+      padding: 0 0 0 150px !important;
+      .stripe & {
+        background-position: 0 7px;
+      }
+    }
+  }
+
+  input.email, .simple-login-form input.password {
+    width: 230px;
+    @include breakpoint1 {
+      width: 370px;
+    }
+    @include breakpoint2 {
+      width: 300px;
+    }
+
+  }
+
+  .discovered {
+    input.email, .simple-login-form input.password {
+
+      width: 100% !important;
+
+    }
+  }
+
+  .discover-button, .arrow-button {
+    //width: auto !important;
+    //font-size: 25px;
+  }
+
+  .discovered .arrow-button {
+    display: none;
+  }
+
+  .discover-button, .login-arrow-button {
+    float: left;
+  }
+
+  .email, .password {
+    @include inline-block;
+    float: left;
+  }
+
+  .register-footer {
+    margin-top: 1em;
+    @include breakpoint1 {
+      margin-top: 2em;
+    }
+  }
+
+  .footer-text {
+    font-size: 66%;
+    line-height: 1.2em;
+    color: #aaa;
+    float: left;
+    width: 59%;
+    padding-left: 1px;
+  }
+
+  .footer-logo {
+    width: 18%;
+    float: left;
+    padding-left: 2%;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .error {
+    color: #f88;
+    font-size: 75%;
+    padding-left: 11px;
+    display: block;
+    clear: both;
+    padding-top: .3em;
+    line-height: 1em;
+  }
+
+  .already-have-account, .forgot-password {
+    font-size: 75%;
+    padding-left: 11px;
+    display: block;
+    clear: both;
+    padding-top: .2em;
+    line-height: 1em;
+  }
+
+  .recaptcha {
+    background: #fff;
+    border: 1px solid #d3d3d3;
+    padding: 16px;
+    width: 100%;
+    #recaptcha_image, img, input {
+      width: 100% !important;
+    }
+    a {
+      font-size: 75%;
+      line-height: 75%;
+    }
+  }
+
+}

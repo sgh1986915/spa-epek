@@ -1,0 +1,75 @@
+<div data-ng-controller="video" class="step-video">
+    <header class="l-header l-section">
+        <h1>Make Your Item Stand Out</h1>
+
+        <p>with a video! Upload a video now to increase your chances of selling</p>
+    </header>
+    <ul class="l-section m-thumbnails">
+
+        <li class="m-thumbnails-image" data-ng-repeat="video in sellData.videos">
+
+<!--
+            <div data-ng-switch="video.status.state.name">
+                <div ng-switch-when="done">
+                    <iframe width="256" height="144"
+                            data-ng-src="http://www.youtube.com/embed/{{video.id}}?rel=0"
+                            frameborder="0" allowfullscreen>
+                    </iframe>
+                    <a href="http://www.youtube.com/watch?v={{video.id}}" target="_blank">Watch video on youtube</a>
+                </div>
+            </div>
+-->
+            <a href="#remove" class="remove-trigger" data-ng-hide="video.status.state.name != 'done'">
+                <div data-ng-click="removeVideo(video.internalId)"
+                     data-ng-hide="video.status.state.name != 'done'" class="remove-overlay">
+                    <span class="icon-cancel-circled btn-remove"></span>
+                </div>
+                <img data-ng-src="http://img.youtube.com/vi/{{video.id}}/2.jpg">
+            </a>
+
+            <div class="m-progress-bar" data-ng-hide="video.status.state.name=='done'">
+                <div class="message">
+                    <span class="error-message" data-ng-show="video.status.state.name=='rejected'">Unfortunately your video has been rejected by Youtube</span>
+                    <span class="status-message"data-ng-show="video.status.state.name=='processing'">Youtube is processing your video</span>
+                    <span class="status-message"data-ng-show="video.status.state.name=='uploading'">Your video is being uploaded on Youtube</span>
+
+                </div>
+                <div class="m-progress-bar-indicator-container">
+                    <div class="m-progress-bar-percent">{{video.percentage}}%</div>
+                    <div class="m-progress-bar-indicator" style="width: {{video.percentage}}%"></div>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <section id="uploadNewVideo" class="l-section">
+        <form id="uploadNewVideoForm"
+              action="{{uploadData.uploadUrl}}?nexturl={{nextUrl}}"
+              method="post"
+              enctype="multipart/form-data">
+            <div class="btn btn-primary btn-file-selector btn-drop">
+                <input class="btn-file-hidden" type="file" onchange="angular.element(this).scope().uploadVideo();"
+                       id="file" class="file-selector" name="file" multiple>
+                <div class="btn btn-primary">Click to Add Video</div>
+                <div class="btn-subtext">or drop files here</div>
+            </div>
+            <input type="hidden" name="token" value="{{uploadData.token}}">
+        </form>
+    </section>
+
+    <section class="l-section">
+        <!-- <button class="btn btn&#45;secondary" -->
+        <!--   data&#45;ng&#45;click="onNextStep()"> -->
+        <!--   Skip <span class="btn&#45;subtext">(I don't have a video)</span> -->
+        <!-- </button> -->
+        <button class="btn btn-primary btn-next clearfix"
+          data-ng-disabled="!activeStep.isValid()"
+          data-ng-click="onNextStep()">Next step
+        </button>
+
+        <iframe id="videoUploadFrame" src="about:blank" class="hidden"></iframe>
+    </section>
+
+    <span class="debug">{{sellData.videos | json}}</span>
+    <span class="debug">{{video|json}}</span>
+</div>

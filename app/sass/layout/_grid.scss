@@ -1,0 +1,29 @@
+/*
+$total-cols: 12;
+$col-width: 4em;
+$gutter-width: 1em;
+$side-gutter-width: $gutter-width;
+*/
+
+
+// The 960gs in ems
+$total-columns: 12;
+$column-width: 60px;
+$gutter-width: 20px;
+$grid-padding: 0px;
+
+$container-style: magic;
+$container-width: 60em;
+
+$show-grid-backgrounds: false;
+
+
+/* TODO check which one are used */
+.container-default{
+  @include container;
+  @include susy-grid-background;
+}
+
+.container-header{
+  @extend .container-default;
+}

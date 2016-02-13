@@ -1,0 +1,21 @@
+<div data-ng-controller="geo">
+    <div>
+        <span class="icon-map-marker"></span>
+        <span data-ng-bind="geo.nearestCity.name"></span>
+        <a href="#" data-ng-click='browseCities($event)'>change</a>        
+    </div>
+    <h2>Nearby Cities</h2>
+    <ul>
+        <li data-ng-repeat="city in geo.nearbyCities">
+            <a href="#" data-ng-click="selectCity($event, city.location)">{{city.name}}</a>
+        </li>
+    </ul>
+    <div id='overlay' class="cnt cities" data-ng-show="browsingCities">
+        <div>Change city</div>
+        <input type="text" data-maps-places="selectedCity" data-maps-bias="current" data-maps-restrict="country"></input>
+        <div class="cities">
+            <ul>
+                <li data-ng-repeat="city in cities"></li>
+            </ul>
+    </div>
+</div>

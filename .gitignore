@@ -1,0 +1,14 @@
+.DS_Store
+.idea
+*.iml
+*.log
+test-results.xml
+e2e-results.xml
+node_modules
+build
+dist
+coverage
+.sass-cache
+*.swp
+*.swo
+.sass-cache/

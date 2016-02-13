@@ -1,0 +1,41 @@
+/* LAYOUT */
+
+.l-vertical-center{
+  @include display-box;
+  @include box-orient(vertical);
+  @include box-pack(center);
+}
+
+.l-section{
+  @extend section;
+  @include pie-clearfix;
+  padding-left: 40px;
+}
+
+.l-header{
+  min-height: 180px;
+  width: 100%;
+
+  @extend %boundry;
+
+  @extend .l-vertical-center;
+}
+
+.l-standard-border{
+  border: 1px solid $color-boundry;
+}
+
+.l-list-border {
+
+  li {
+    border-color: $color-boundry;
+    border-style: solid;
+    border-width: 1px 0px 0px 0px;
+  }
+
+  li:last-child{
+    border-width: 1px 0 0 0;
+  }
+}
+
+

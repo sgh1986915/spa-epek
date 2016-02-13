@@ -1,0 +1,62 @@
+/* Color Declarations */
+
+$white-transparent: rgba(255, 255, 255, 0.8);
+
+$blue: #396c9c;
+$blue-light: #3d74a7;
+
+$grey-dark: #5c5c5c;
+$grey-medium: #878787;
+$grey-light: #e3e3e3;
+$grey-very-light: #f0f0f0;
+
+$green-light: #7da943;
+$green: #899d82;
+
+$red: #d13111;
+
+/* Color Functional Declarations */
+
+$color-primary: $blue;
+$color-primary-hover: lighten( $color-primary, 10% );
+
+$color-boundry: $grey-light;
+
+$color-secondary-button-border: $grey-light;
+$color-secondary-button-background: $grey-very-light;
+$color-secondary-button-font: $grey-dark;
+$color-secondary-button-subtext-font: $grey-medium;
+$color-secondary-button-hover: $grey-dark;
+
+$color-heading: $blue;
+$color-paragraph: $grey-medium;
+
+$color-wizard-nav: $grey-dark;
+
+$color-active-background: $color-primary;
+$color-active-font: white;
+
+$color-progress-bar-background: $grey-very-light;
+$color-progress-bar-foreground: $blue;
+
+$color-error: $red;
+
+$color-white-overlay: $white-transparent;
+
+$color-breadcrumb: $grey-medium;
+$color-breadcrumb-link: $blue-light;
+$color-breadcrumb-guillemet: black;
+
+$color-tree-select-hover: $blue-light;
+$color-tree-select-active-background: $grey-dark;
+$color-tree-select-active-font: white;
+
+$color-stripe-background: $grey-very-light;
+$color-stripe-border: $grey-light;
+
+$color-loading-background: $green-light;
+$color-error-background: $red;
+$color-notification-font: white;
+
+$color-header-nav-highlight: $green;
+
